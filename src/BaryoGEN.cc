@@ -24,8 +24,8 @@
 // #define ARGS 8
 // #define MPW 5.0e-7
 
-const int ARGS = 7;
-const double MPW = 5.0e-7; 
+const int ARGS = 8; // add one more command line arg to inject random seed
+const double MPW = 5.0e-7; // might be changed if MPW is also mutable
 
 // use constants to make it more stable
 
