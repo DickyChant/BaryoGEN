@@ -21,8 +21,13 @@
 #include "../include/BaryoGEN.h"
 #include "../include/LHEWriter.h"
 
-#define ARGS 7
-#define MPW 5.0e-7
+// #define ARGS 8
+// #define MPW 5.0e-7
+
+const int ARGS = 7;
+const double MPW = 5.0e-7; 
+
+// use constants to make it more stable
 
 using namespace LHAPDF;
 using namespace std;
@@ -61,13 +66,16 @@ int main(int argc, char* argv[])
     bool bCan = bCancel;
     string ofName = string(argv[7]);
 
+    long long int seed = atoll(argv[8]); 
+
     //Init structures needed during generatation
     double maxwt = 0;
     double maxMCtot = 0.0;
 
     int NF = 0;
     TRandom3 rand;
-    rand.SetSeed(0);
+    // rand.SetSeed(0);
+    rand.SetSeed(seed);
     particleBase *partBase = new particleBase();
     configBuilder confBuild;
     vector<double> daughtersPt;
@@ -99,7 +107,7 @@ int main(int argc, char* argv[])
     double minx = thr*thr/(SQRTS*SQRTS);
 
     //Init parton distribution functions
-    const PDF* LHApdf = mkPDF("CT10",0);
+    const PDF* LHApdf = mkPDF("NNPDF31_nnlo_as_0118_mc_hessian_pdfas",0);
     //cout << LHApdf->xfxQ2(2, 0.5, SQRTS*SQRTS) << endl;
 
     //Initialize histograms for debugging
